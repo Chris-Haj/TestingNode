@@ -21,12 +21,12 @@ $(document).ready(() => {
                 const listItem = $('<li>').text(`Course ID: ${courseId}`);
                 listItem.append((' - '));
                 listItem.append($('<span>').text(`Course Name: ${courseName}`));
-                listItem.append($('<br>'));
+                listItem.append((' - '));
                 listItem.append($('<span>').text(`Lecturer: ${courseLecturer}`));
                 listItem.append($('<br>'));
-                listItem.append($('<span>').text(`Start Date: ${start}`));
-                listItem.append((' - '));
-                listItem.append($('<span>').text(`End Date: ${end}`));
+                listItem.append($('<span>').text(`Start Date - End Date`));
+                listItem.append(('<br>'));
+                listItem.append($('<span>').text(`${start} - ${end}`));
 
                 coursesList.append(listItem);
             });

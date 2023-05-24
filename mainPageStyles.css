@@ -51,14 +51,14 @@ body {
 }
 
 .CourseEditor {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
     background-color: #af4a05;
     position: fixed;
     bottom: 10%;
-    /*left: -100%;*/
+    left: -100%;
     height: 85%;
     width: 20%;
     z-index: 5;
@@ -77,6 +77,12 @@ body {
 .formInput{
     display: flex;
 }
+
+.formInput input{
+    position: relative;
+    left: 15%;
+}
+
 #course-form label {
     width:20%;
     font-weight: bold;
