@@ -6,6 +6,7 @@
 
 body {
     background: aliceblue;
+    height: 3000px;
 }
 
 #list {
@@ -22,7 +23,15 @@ body {
 }
 
 .content button {
-    font-size: 110%;
+    font-size: 130%;
+    font-family: Serif;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.content button:hover {
+    font-weight: bold;
+
 }
 
 #courses {
@@ -40,3 +49,39 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.CourseEditor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #af4a05;
+    position: fixed;
+    bottom: 10%;
+    /*left: -100%;*/
+    height: 85%;
+    width: 20%;
+    z-index: 5;
+    transition: left 0.3s ease-in-out;
+}
+
+#course-form {
+    font-size: 120%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+}
+
+#course-form label {
+    font-size: 120%;
+    font-weight: bold;
+    margin: 5px;
+}
+
+#course-form input {
+    font-size: 120%;
+    width: 80%;
+    font-weight: bold;
+    margin: 5px;
+}
+#form

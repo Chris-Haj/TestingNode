@@ -1,4 +1,9 @@
 $(document).ready(() => {
+
+    $('.addCourse').click(()=>{
+        $('.CourseEditor').css('display','flex').animate({ left: '5' }, 200);
+    })
+
     $.ajax({
         url: '/courses',
         type: 'GET',
