@@ -21,23 +21,35 @@
     <h1>Course Details Forum</h1>
     <div class="form-container">
         <form id="course-form">
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id" required>
+            <div class="formInput">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id" required>
+            </div>
+            <div class="formInput">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            </div>
+            <div class="formInput">
 
-            <label for="lecturer">Lecturer:</label>
-            <input type="text" id="lecturer" name="lecturer" required>
+                <label for="lecturer">Lecturer:</label>
+                <input type="text" id="lecturer" name="lecturer" required>
+            </div>
+            <div class="formInput">
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" name="start-date" required>
 
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="start-date" required>
+            </div>
+            <div class="formInput">
+                <label for="end-date">End Date:</label>
+                <input type="date" id="end-date" name="end-date" required>
 
-            <label for="end-date">End Date:</label>
-            <input type="date" id="end-date" name="end-date" required>
+            </div>
+            <div class="formInput">
+                <label for="prerequisite-courses">Prerequisite Courses:</label>
+                <input type="text" id="prerequisite-courses" name="prerequisite-courses">
 
-            <label for="prerequisite-courses">Prerequisite Courses:</label>
-            <input type="text" id="prerequisite-courses" name="prerequisite-courses">
+            </div>
 
             <button type="submit">Submit</button>
         </form>
