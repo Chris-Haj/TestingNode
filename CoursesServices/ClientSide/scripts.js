@@ -1,4 +1,9 @@
 $(document).ready(() => {
+    $('.addCourse').click(() => {
+        window.location.href = '/addForum';
+    });
+
+
     let form  = $('#user_form');
     form.validate({
         rules: {
@@ -48,21 +53,20 @@ $(document).ready(() => {
             type: 'POST',
             data: JSON.stringify(course),
             contentType: 'application/json',
+            processData: false,
+            encode: true,
             success: (response) => {
                 console.log('Course added successfully:', response);
                 // Reset the form after successful submission
                 $('#course-form')[0].reset();
+                location.href = "/"
             },
             error: (xhr, status, error) => {
                 console.error('Error adding course:', error);
             }
         });
+        window.location.href = '/';
     });
-
-    $('.addCourse').click(()=>{
-        $('.CourseEditor').css('display','flex').animate({ left: '5' }, 200);
-    })
-
 
     $.ajax({
         url: '/courses',

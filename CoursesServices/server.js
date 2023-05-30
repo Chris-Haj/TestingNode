@@ -1,27 +1,27 @@
-const express = require('express'),
-    bodyParser = require('body-parser'),
-    path = require('path'),
-    fs = require('fs'),
-    cors = require('cors'),
-    routers = require('./ServerSide/routes.js');
-let app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const fs = require('fs');
+const cors = require('cors');
+const routers = require('./ServerSide/routes.js');
 
+let app = express();
 let port = 3001;
-app.listen(port,()=>{
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use('/', express.static(path.join(__dirname, '/ClientSide')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/ClientSide/index.html'));
+});
+
+// Add a route handler for the '/addForum' path
+app.get('/addForum', (req, res) => {
+    res.sendFile(path.join(__dirname, '/ClientSide/Forum/Forum.html'));
+});
+
+app.listen(port, () => {
     console.log(`Starting server on port ${port}`);
 });
-
-//load index page when opening port
-app.use(express.static(__dirname));
-
-// app.get('/courses', (req, res) => {
-//     // Read the courses.json file and send the data as a response
-//     res.sendFile(__dirname + '/courses.json');
-// });
-
-app.post('/courses',(res,req)=>{
-    console.log(req.params);
-});
-
-
-

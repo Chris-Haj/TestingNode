@@ -1,12 +1,13 @@
-const express = require('/express'),
-    userRoutes = require('./users');
-
-var router = express.Router();
-
-
-router.get('/users', userRoutes.read_users);
-router.post('/users', userRoutes.create_user);
-router.put('/users/:id', userRoutes.update_user);
-router.delete('/users/:id', userRoutes.delete_user);
-
-module.exports = router;
+// const express = require('express'),
+//     userRoutes = require('./courses.json');
+//
+// var router = express.Router();
+//
+//
+//
+// router.get('/courses', userRoutes);
+// router.post('/courses', userRoutes);
+// router.put('/courses/:id', userRoutes);
+// router.delete('/courses/:id', userRoutes);
+//
+// module.exports = router;

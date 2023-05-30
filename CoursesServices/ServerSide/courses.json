@@ -1,0 +1,35 @@
+{
+  "COURSE_1": {
+    "id": "COURSE_1",
+    "name": "Computer Science Basics",
+    "lecturer":"Prof. A",
+    "start_date": "01-10-2022",
+    "end_date": "01-10-2023",
+    "prerequisite_courses": [],
+    "students": {
+      "STUDENT_1": {
+        "id": "STUDENT_1",
+        "firstname": "Alice",
+        "surname": "Johnson",
+        "picture": "http://example.com/alice.jpg",
+        "grade": "A"
+      },
+      "STUDENT_2": {
+        "id": "STUDENT_2",
+        "firstname": "Bob",
+        "surname": "Smith",
+        "picture": "http://example.com/bob.jpg",
+        "grade": "B"
+      }
+    }
+  },
+  "COURSE_2": {
+    "id": "COURSE_2",
+    "name": "Advanced Programming",
+    "lecturer":"Prof. B",
+    "start_date": "01-11-2022",
+    "end_date": "01-11-2023",
+    "prerequisite_courses": ["COURSE_1"],
+    "students": {}
+  }
+}
