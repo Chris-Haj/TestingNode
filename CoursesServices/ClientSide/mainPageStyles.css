@@ -24,7 +24,7 @@ body {
 
 .content button {
     font-size: 130%;
-    font-family: Serif;
+    font-family: Serif, serif;
     border-radius: 5px;
     padding: 10px;
 }
