@@ -3,6 +3,9 @@ $(document).ready(() => {
     $('.addCourse').click(() => {
         window.location.href = '/addForum';
     });
+    $('#goBack').click(() => {
+        window.location.href = '/';
+    });
 
     // let form  = $('#user_form');
     // form.validate({
@@ -71,13 +74,15 @@ $(document).ready(() => {
         dataType: 'json',
         success: (data) => {
             const coursesList = $('#courses');
+            //get the data from the server and append it to the list
 
-            data.forEach((course) => {
-                const courseId = course.course_ID.id;
-                const courseName = course.course_ID.name;
-                const courseLecturer = course.course_ID.lecturer;
-                const start = course.course_ID.start_date;
-                const end = course.course_ID.end_date;
+            Object.values(data).forEach((course) => {
+                console.log(course);
+                const courseId = course['id'];
+                const courseName = course['name'];
+                const courseLecturer = course['lecturer'];
+                const start = course['start_date'];
+                const end = course['end_date'];
 
                 const listItem = $('<li>').text(`Course ID: ${courseId}`);
                 listItem.append((' - '));

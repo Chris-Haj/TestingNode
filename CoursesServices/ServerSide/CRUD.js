@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const dataPath = './courses.json';
+const dataPath = './ServerSide/courses.json';
 
 const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
     fs.readFile(filePath, encoding, (err, data) => {
