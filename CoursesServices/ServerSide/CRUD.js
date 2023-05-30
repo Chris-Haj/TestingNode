@@ -13,7 +13,6 @@ const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 
 };
 
 const writeFile = (fileData, callback, filePath = dataPath, encoding = 'utf8') => {
-
     fs.writeFile(filePath, fileData, encoding, (err) => {
         if (err) {
             console.log(err);
@@ -27,13 +26,13 @@ module.exports = {
 
     CreateCourse: function (req, res) {
         readFile((data) => {
-            let newCourse = req.body;
-            if (data[newCourse.id]) {
+            const newCourse = req.body;
+            if (data[newCourse.course_ID.id]) {
                 return res.status(400).send('Course ID already exists');
             }
-            data[newCourse.id] = newCourse;
-            writeFile(JSON.stringify(data), () => {
-                res.status(201).send(newCourse);
+            data[newCourse.course_ID.id] = newCourse.course_ID;
+            writeFile(JSON.stringify(data, null, 2), () => {
+                res.status(201).send(newCourse.course_ID);
             });
         }, true);
     },
@@ -95,6 +94,32 @@ module.exports = {
         }, true);
     },
 
+    deleteStudentFromCourse: function (req, res) {
+        readFile((data) => {
+            const courseId = req.params.courseId;
+            const studentId = req.params.studentId;
+            const course = data[courseId];
+            if (!course || !course.students || !course.students[studentId]) {
+                return res.status(404).send('Student or course not found');
+            }
+            delete course.students[studentId];
+            writeFile(JSON.stringify(data), () => {
+                res.status(200).send(`Student ${studentId} removed from course ${courseId}`);
+            });
+        }, true);
+    },
 
+    deleteCourse: function (req, res) {
+        readFile((data) => {
+            const courseId = req.params.id;
+            if (!data[courseId]) {
+                return res.status(404).send('Course not found');
+            }
+            delete data[courseId];
+            writeFile(JSON.stringify(data), () => {
+                res.status(200).send(`Course ${courseId} deleted`);
+            });
+        }, true);
+    }
 
 };

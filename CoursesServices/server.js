@@ -22,6 +22,8 @@ app.get('/addForum', (req, res) => {
     res.sendFile(path.join(__dirname, '/ClientSide/Forum/Forum.html'));
 });
 
+app.use('/', routers);
+
 app.listen(port, () => {
     console.log(`Starting server on port ${port}`);
 });

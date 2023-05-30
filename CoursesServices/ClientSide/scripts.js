@@ -1,30 +1,30 @@
 $(document).ready(() => {
+    // Click handler to add a new course
     $('.addCourse').click(() => {
         window.location.href = '/addForum';
     });
 
+    // let form  = $('#user_form');
+    // form.validate({
+    //     rules: {
+    //         id_field: {
+    //             required: true,
+    //             pattern: /^[a-zA-Z0-9]+$/
+    //         }
+    //     },
+    //     // Specify validation error messages
+    //     messages: {
+    //         id_field: {
+    //             required: "ID is required",
+    //             pattern: "ID can only contain letters and numbers"
+    //         }
+    //     }
+    // })
 
-    let form  = $('#user_form');
-    form.validate({
-        rules: {
-            id_field: {
-                required: true,
-                pattern: /^[a-zA-Z0-9]+$/
-            }
-        },
-        // Specify validation error messages
-        messages: {
-            id_field: {
-                required: "ID is required",
-                pattern: "ID can only contain letters and numbers"
-            }
-        }
-    })
-
-    form.submit((event) => {
-        if(!event.valid())
-            return;
-        event.preventDefault(); // Prevent form submission
+    // Handle form submission
+    let form  = $('#course-form');
+    form.on('submit', (event) => {
+        event.preventDefault();
 
         // Get form input values
         const courseId = $('#id').val();
@@ -53,19 +53,16 @@ $(document).ready(() => {
             type: 'POST',
             data: JSON.stringify(course),
             contentType: 'application/json',
-            processData: false,
-            encode: true,
             success: (response) => {
                 console.log('Course added successfully:', response);
                 // Reset the form after successful submission
-                $('#course-form')[0].reset();
-                location.href = "/"
+                form[0].reset();
+                window.location.href = "/";
             },
             error: (xhr, status, error) => {
                 console.error('Error adding course:', error);
             }
         });
-        window.location.href = '/';
     });
 
     $.ajax({
