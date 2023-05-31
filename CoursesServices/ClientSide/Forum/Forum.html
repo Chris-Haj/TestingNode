@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="ForumStyles.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- load bootstrap via CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- load jquery via CDN -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="scripts.js"></script> <!-- Add the scripts.js file here -->
+    <title>Add Course</title>
+</head>
+<body>
+<div class="col-sm-6 col-sm-offset-3">
+    <h1>Add new course</h1>
+    <!-- OUR FORM -->
+    <form id="course-form" action="/courses" method="POST">
+        <!-- ID -->
+        <div class="form-group">
+            <label>ID</label>
+            <input type="text" class="form-control" name="id" id="id" placeholder="write id here" required pattern="[a-zA-Z0-9]+">
+        </div>
+        <!-- NAME -->
+        <div class="form-group">
+            <label>Course Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="write course name here" required>
+        </div>
+        <!-- Lecturer -->
+        <div class="form-group">
+            <label>Lecturer</label>
+            <input type="text" class="form-control" name="lecturer" id="lecturer" placeholder="write lecturer name here" required>
+        </div>
+        <!-- Start Date -->
+        <div class="form-group">
+            <label>Start Date</label>
+            <input type="date" class="form-control" name="start-date" id="start-date" placeholder="xx/xx/xx">
+        </div>
+        <!-- End Date -->
+        <div class="form-group">
+            <label>End Date</label>
+            <input type="date" class="form-control" name="end-date" id="end-date" placeholder="xx/xx/xx">
+        </div>
+        <!-- Pre-requisite Courses -->
+        <div class="form-group">
+            <label>Pre-requisite Courses</label>
+            <input type="text" class="form-control" name="prerequisite-courses" id="prerequisite-courses" placeholder="Choose courses.">
+        </div>
+        <button type="submit" class="btn btn-success">Submit <span class="fa fa-arrow-right"></span></button>
+        <button class="btn btn-success" id="goBack">Go Back</button>
+    </form>
+</div>
+</body>
+</html>

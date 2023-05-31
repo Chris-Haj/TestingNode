@@ -1,0 +1,81 @@
+* {
+    padding: 5px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: aliceblue;
+    height: 3000px;
+}
+
+#list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content button {
+    font-size: 130%;
+    font-family: Serif, serif;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.content button:hover {
+    font-weight: bold;
+}
+
+#courses li {
+    list-style-type:none;
+    margin: 10px;
+    display: flex;
+}
+
+
+.CourseDetails{
+    overflow: hidden;
+    margin: 10px;
+    border: black 1px solid;
+    background-color: goldenrod;
+    height: 10%;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+.ChangingButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.addCourse{
+    width: 10%;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewStudents{
+    width: 23%;
+    z-index: 2;
+    position: fixed;
+    top: 10%;
+    bottom:10%;
+    right: 3%;
+    background-color: black;
+}

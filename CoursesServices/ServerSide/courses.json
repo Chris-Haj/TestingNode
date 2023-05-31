@@ -1,0 +1,24 @@
+{
+  "21365": {
+    "id": "21365",
+    "name": "Math",
+    "lecturer": "Mariam",
+    "start_date": "2023-05-08",
+    "end_date": "2023-05-19",
+    "prerequisite_course": [
+      "Math"
+    ],
+    "students": []
+  },
+  "asd": {
+    "id": "asd",
+    "name": "das",
+    "lecturer": "dasd",
+    "start_date": "2023-05-10",
+    "end_date": "2023-05-25",
+    "prerequisite_course": [
+      "Something"
+    ],
+    "students": []
+  }
+}
