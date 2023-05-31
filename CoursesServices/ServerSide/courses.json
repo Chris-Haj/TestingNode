@@ -1,32 +1,24 @@
 {
-  "hey": {
-    "id": "hey",
-    "name": "i",
-    "lecturer": "just",
-    "start_date": "2023-05-15",
-    "end_date": "0487-06-27",
-    "prerequisite_course": [
-      "dasd"
-    ]
-  },
-  "SecondCourse": {
-    "id": "SecondCourse",
+  "21365": {
+    "id": "21365",
     "name": "Math",
-    "lecturer": "mariam",
-    "start_date": "2023-05-09",
-    "end_date": "2023-05-25",
+    "lecturer": "Mariam",
+    "start_date": "2023-05-08",
+    "end_date": "2023-05-19",
     "prerequisite_course": [
-      "none"
-    ]
+      "Math"
+    ],
+    "students": []
   },
-  "Test": {
-    "id": "Test",
-    "name": "hellloooooooo",
-    "lecturer": "more courses",
-    "start_date": "2023-05-01",
+  "asd": {
+    "id": "asd",
+    "name": "das",
+    "lecturer": "dasd",
+    "start_date": "2023-05-10",
     "end_date": "2023-05-25",
     "prerequisite_course": [
       "Something"
-    ]
+    ],
+    "students": []
   }
 }
