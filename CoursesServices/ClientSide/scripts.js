@@ -1,3 +1,4 @@
+let ChosenCourse = null;
 $(document).ready(() => {
     // Click handler to add a new course
     $('.addCourse').click(() => {
@@ -8,24 +9,7 @@ $(document).ready(() => {
     });
 
 
-    let form  = $('#course-form');
-    // form.validate({
-    //     rules: {
-    //         id_field: {
-    //             required: true,
-    //             pattern: /^[a-zA-Z0-9]+$/
-    //         }
-    //     },
-    //     // Specify validation error messages
-    //     messages: {
-    //         id_field: {
-    //             required: "ID is required",
-    //             pattern: "ID can only contain letters and numbers"
-    //         }
-    //     }
-    // })
-
-    // Handle form submission
+    let form = $('#course-form');
 
     form.on('submit', (event) => {
         event.preventDefault();
@@ -86,8 +70,8 @@ $(document).ready(() => {
                 const start = course['start_date'].split("-").reverse().join("-");
                 const end = course['end_date'].split("-").reverse().join("-");
 
-
                 // Create the course container element
+
                 const courseItem = $('<li>').prop('id', `course${counter++}`);
                 // Create the course buttons container element
                 const courseButtons = $('<div>').addClass('CourseButtons ChangingButtons');
@@ -105,11 +89,26 @@ $(document).ready(() => {
                 // Create the student buttons container element
                 const studentButtons = $('<div>').addClass('StudentButtons ChangingButtons');
                 studentButtons.append($('<button>').text('Add Student').addClass('addStudent'));
-                studentButtons.append($('<button>').text('View Students').addClass('viewStudents'));
-                $('.viewStudents').click((event) => {
-                    console.log('hello');
+                let studentViewButton = $('<button>').text('View Students').addClass('viewStudents')
+                studentButtons.append(studentViewButton);
+                studentViewButton.click((event) => {
+                    ChosenCourse = $(event.currentTarget).closest('li').attr('id');
 
-                    console.log(courseId);
+                    // Load the students of the chosen course
+                    $.ajax({
+                        url: `/courses/${ChosenCourse}`,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: (course) => {
+                            // Store the students in the local storage to be accessed in the Students.html page
+                            localStorage.setItem('students', JSON.stringify(course.students));
+                            // Redirect to the students list page
+                            window.location.href = '/studentsList';
+                        },
+                        error: (xhr, status, error) => {
+                            console.error('Error loading course:', error);
+                        }
+                    });
                 });
                 // Append the elements to the course container
                 courseItem.append(courseButtons);

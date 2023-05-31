@@ -20,5 +20,16 @@
       "Something"
     ],
     "students": []
+  },
+  "AnotherCourse": {
+    "id": "AnotherCourse",
+    "name": "English",
+    "lecturer": "Chris",
+    "start_date": "2023-05-07",
+    "end_date": "2023-05-17",
+    "prerequisite_course": [
+      ""
+    ],
+    "students": []
   }
 }

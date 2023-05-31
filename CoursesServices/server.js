@@ -17,9 +17,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/ClientSide/index.html'));
 });
 
-// Add a route handler for the '/addForum' path
+// Correctly send the Forum.html file
 app.get('/addForum', (req, res) => {
     res.sendFile(path.join(__dirname, '/ClientSide/Forum/Forum.html'));
+});
+
+// Correctly send the Students.html file
+app.get('/studentsList',(req,res)=>{
+    res.sendFile(path.join(__dirname,'/ClientSide/StudentsPage/Students.html'));
 });
 
 app.use('/', routers);
