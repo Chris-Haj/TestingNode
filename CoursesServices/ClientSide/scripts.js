@@ -76,7 +76,7 @@ $(document).ready(() => {
                 // Create the course buttons container element
                 const courseButtons = $('<div>').addClass('CourseButtons ChangingButtons');
                 courseButtons.append($('<button>').text('Update Course'));
-                courseButtons.append($('<button>').text('Delete Course'));
+                courseButtons.append($('<button>').text('Delete Course').addClass('deleteCourse'));
 
                 // Create the course details container element
                 const courseDetails = $('<div>').addClass('CourseDetails');
@@ -118,10 +118,80 @@ $(document).ready(() => {
                 // Append the course container to the courses list
                 coursesList.append(courseItem);
             });
-        },
-        error: (xhr, status, error) => {
-            console.error(error + 'hello');
+
+            // Click handler for deleting a course
+            $('.deleteCourse').click(function (event) {
+                let courseItem = $(event.target).closest('li');
+                let courseId = courseItem.find(".CourseDetails span:first-child").text().split(": ")[1]; // Extract courseId from the CourseDetails span
+
+                // AJAX call to delete the course from the server
+                $.ajax({
+                    url: `/courses/${courseId}`,
+                    type: 'DELETE',
+                    success: (response) => {
+                        console.log('Course deleted successfully:', response);
+                        // Remove the course from the DOM
+                        courseItem.remove();
+                    },
+                    error: (xhr, status, error) => {
+                        console.error('Error deleting course:', error);
+                    }
+                });
+            });
+
+            // Click handler for adding a student
+            $('.addStudent').click(function (event) {
+                const courseItem = $(event.target).closest('li');
+                const courseId = courseItem.find(".CourseDetails span:first-child").text().split(": ")[1]; // Extract courseId from the CourseDetails span
+
+                // Store the courseId on the form for reference when submitting
+                $('#student-form').data('courseId', courseId);
+
+                // Show the modal
+                $('#addStudentModal').show();
+            });
+
+            $('#student-form').submit(function (event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+                const studentName = $('#student-name').val(); // Get the value from the student name input field
+                const courseId = $('#student-form').data('courseId'); // Get the course id from the form data
+
+                // Clear the input field for next time
+                $('#student-name').val('');
+
+                // Get the current data of the course
+                $.ajax({
+                    type: 'GET',
+                    url: `/courses/${courseId}`,
+                    success: function (data) {
+                        // Add the new student to the students array
+                        data.students.push(studentName);
+
+                        // Make a PUT request to update the course with the new student
+                        $.ajax({
+                            type: 'PUT',
+                            url: `/courses/${courseId}`,
+                            contentType: 'application/json',
+                            data: JSON.stringify(data),
+                            success: function (data) {
+                                // After a successful request, hide the modal
+                                $('#addStudentModal').hide();
+                            },
+                            error: function (err) {
+                                console.log('Error', err);
+                            }
+                        });
+                    },
+                    error: function (err) {
+                        console.log('Error', err);
+                    }
+                });
+            });
+
+
+
         }
     });
+
 });
 
