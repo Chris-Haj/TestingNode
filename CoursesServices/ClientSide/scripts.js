@@ -180,7 +180,6 @@ $(document).ready(() => {
                         // Create the new student object
                         const student = {
                             "id?": studentId,
-                            "id": studentId,
                             "firstname": firstName,
                             "surname": lastName,
                             "picture": pictureUrl,
