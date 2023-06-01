@@ -153,19 +153,42 @@ $(document).ready(() => {
 
             $('#student-form').submit(function (event) {
                 event.preventDefault(); // Prevent the form from submitting normally
-                const studentName = $('#student-name').val(); // Get the value from the student name input field
-                const courseId = $('#student-form').data('courseId'); // Get the course id from the form data
+                const studentId = $('#student-id').val(); // Get the value from the student ID input field
+                const firstName = $('#student-firstname').val(); // Get the value from the first name input field
+                const lastName = $('#student-surname').val(); // Get the value from the last name input field
+                const pictureUrl = $('#student-picture').val(); // Get the value from the picture URL input field
+                const grade = $('#student-grade').val(); // Get the value from the grade input field
+                const courseId = $('#student-form').data('courseId'); // Get the course ID from the form data
 
-                // Clear the input field for next time
-                $('#student-name').val('');
+                // Clear the input fields for next time
+                $('#student-id').val('');
+                $('#student-firstname').val('');
+                $('#student-surname').val('');
+                $('#student-picture').val('');
+                $('#student-grade').val('');
 
                 // Get the current data of the course
                 $.ajax({
                     type: 'GET',
                     url: `/courses/${courseId}`,
                     success: function (data) {
-                        // Add the new student to the students array
-                        data.students.push(studentName);
+                        // Initialize the students object if it doesn't exist
+                        if (!data.students) {
+                            data.students = {};
+                        }
+
+                        // Create the new student object
+                        const student = {
+                            "id?": studentId,
+                            "id": studentId,
+                            "firstname": firstName,
+                            "surname": lastName,
+                            "picture": pictureUrl,
+                            "grade": grade
+                        };
+
+                        // Add the new student to the students object of the course using the student ID as the key
+                        data.students[studentId] = student;
 
                         // Make a PUT request to update the course with the new student
                         $.ajax({
@@ -187,9 +210,6 @@ $(document).ready(() => {
                     }
                 });
             });
-
-
-
         }
     });
 
