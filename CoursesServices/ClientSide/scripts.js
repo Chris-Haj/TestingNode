@@ -153,6 +153,10 @@ $(document).ready(() => {
 
             $('#student-form').submit(function (event) {
                 event.preventDefault(); // Prevent the form from submitting normally
+
+                // Hide the error message
+                $('#student-error').hide();
+
                 const studentId = $('#student-id').val(); // Get the value from the student ID input field
                 const firstName = $('#student-firstname').val(); // Get the value from the first name input field
                 const lastName = $('#student-surname').val(); // Get the value from the last name input field
@@ -172,7 +176,6 @@ $(document).ready(() => {
                     type: 'GET',
                     url: `/courses/${courseId}`,
                     success: function (data) {
-
                         // Check if the student ID already exists in the students array
                         const existingStudent = data.students.find(student => Object.keys(student)[0] === studentId);
                         if (existingStudent) {
@@ -183,24 +186,14 @@ $(document).ready(() => {
                             return; // Prevent form submission
                         }
 
-
-                        // Initialize the students array if it doesn't exist
-                        if (!data.students) {
-                            data.students = [];
-                        }
-
-
-                            // Create the new student object
-                            const student = {
-                                [studentId]: {
-                                    "id": studentId,
-                                    "firstname": firstName,
-                                    "surname": lastName,
-                                    "picture": pictureUrl,
-                                    "grade": grade
-                                }
-                            };
-
+                        // Create the new student object
+                        const student = {
+                            "id": studentId,
+                            "firstname": firstName,
+                            "surname": lastName,
+                            "picture": pictureUrl,
+                            "grade": grade
+                        };
                         // Create an object with the studentId as the key and the student object as the value
                         let studentObj = {};
                         studentObj[studentId] = student;
