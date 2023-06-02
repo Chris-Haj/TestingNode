@@ -112,5 +112,20 @@ body {
     cursor: pointer;
 }
 
+.btn2 {
+    padding: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
 
 

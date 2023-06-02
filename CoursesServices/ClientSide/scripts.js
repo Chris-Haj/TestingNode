@@ -172,22 +172,41 @@ $(document).ready(() => {
                     type: 'GET',
                     url: `/courses/${courseId}`,
                     success: function (data) {
-                        // Initialize the students object if it doesn't exist
-                        if (!data.students) {
-                            data.students = {};
+
+                        // Check if the student ID already exists in the students array
+                        const existingStudent = data.students.find(student => Object.keys(student)[0] === studentId);
+                        if (existingStudent) {
+                            // Handle the case where the student ID already exists
+                            const errorElement = $('#student-error');
+                            errorElement.text('Student ID already exists in the course. Please choose a different ID.');
+                            errorElement.show();
+                            return; // Prevent form submission
                         }
 
-                        // Create the new student object
-                        const student = {
-                            "id?": studentId,
-                            "firstname": firstName,
-                            "surname": lastName,
-                            "picture": pictureUrl,
-                            "grade": grade
-                        };
 
-                        // Add the new student to the students object of the course using the student ID as the key
-                        data.students[studentId] = student;
+                        // Initialize the students array if it doesn't exist
+                        if (!data.students) {
+                            data.students = [];
+                        }
+
+
+                            // Create the new student object
+                            const student = {
+                                [studentId]: {
+                                    "id": studentId,
+                                    "firstname": firstName,
+                                    "surname": lastName,
+                                    "picture": pictureUrl,
+                                    "grade": grade
+                                }
+                            };
+
+                        // Create an object with the studentId as the key and the student object as the value
+                        let studentObj = {};
+                        studentObj[studentId] = student;
+
+                        // Add the new student object to the students array of the course
+                        data.students.push(studentObj);
 
                         // Make a PUT request to update the course with the new student
                         $.ajax({
@@ -198,6 +217,7 @@ $(document).ready(() => {
                             success: function (data) {
                                 // After a successful request, hide the modal
                                 $('#addStudentModal').hide();
+                                $('#student-error').hide();
                             },
                             error: function (err) {
                                 console.log('Error', err);
@@ -208,7 +228,14 @@ $(document).ready(() => {
                         console.log('Error', err);
                     }
                 });
+                return false;
             });
+            $('#cancelStudentModal').click(function() {
+                $('#addStudentModal').hide();  // This will hide the modal
+                $('#student-error').hide();
+            });
+
+
         }
     });
 
